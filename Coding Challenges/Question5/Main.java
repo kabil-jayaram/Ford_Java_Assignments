@@ -21,7 +21,7 @@ class SavingsAccount implements BankAccount {
     }
 
     public void performTransaction(double amount, String type) {
-        if(type.equalsIgnoreCase("withdraw")) {
+        if(type.equalsIgnoreCase("withdraw") && this.balance >= amount) {
             this.balance -= amount;
         } else {
             this.balance += amount;
@@ -45,8 +45,11 @@ class CheckingAccount implements BankAccount {
     }
 
     public void performTransaction(double amount, String type) {
-        if(type.equalsIgnoreCase("withdraw") && amount <= 10000) {
-            this.balance -= amount;
+        if(type.equalsIgnoreCase("withdraw")) {
+            if(this.balance >= amount)
+                this.balance -= amount;
+            else if(amount <= 10000)
+                this.balance -= amount;
         } else if(type.equalsIgnoreCase("deposit") && amount <= 5000) {
             this.balance += amount;
         } else {
