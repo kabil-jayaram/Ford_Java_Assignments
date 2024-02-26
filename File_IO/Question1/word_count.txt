@@ -1,0 +1,11 @@
+the: 1
+a: 1
+testing.: 1
+contains: 1
+file: 2
+text.: 1
+this: 1
+for: 1
+is: 1
+text: 1
+sample: 2
