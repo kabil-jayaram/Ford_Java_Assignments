@@ -1,7 +1,8 @@
-package File_IO.Question6;
+package File_IO.Question9;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Student implements Serializable {
     private int id;
@@ -16,25 +17,25 @@ class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student: " + "Id = " + id + ", Name = " + name + ", Department = " + department;
+        return "Student: " + "Id = " + id + ", Name = " + name + ", Department='" + department;
     }
 }
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Student student1 = new Student(1, "Ravi", "CSE");
-        Student student2 = new Student(2, "Kabilan", "ECE");
+        Student student1 = new Student(1, "Kishore", "IT");
+        Student student2 = new Student(2, "Haribala", "BT");
         Student student3 = new Student(3, "Vignesh", "AIML");
-        String filePath = "/Users/kjayar18/IdeaProjects/Java-Assignments/src/main/java/File_IO/Question6/Serialized_Objects";
 
         List<Student> studentList = new ArrayList<>();
         studentList.add(student1);
         studentList.add(student2);
         studentList.add(student3);
 
+        String filePath = "/Users/kjayar18/IdeaProjects/Java-Assignments/src/main/java/File_IO/Question9/Serialized_Objects";
+
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
@@ -47,16 +48,17 @@ public class Main {
             fis = new FileInputStream(filePath);
             ois = new ObjectInputStream(fis);
 
-            List<Student> deserializedObjects = (List<Student>)ois.readObject();
-            System.out.println("Deserialized Objects: ");
-            deserializedObjects.forEach(System.out::println);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            List<Student> deserializedStudentList = (List<Student>) ois.readObject();
+
+            System.out.println("Deserialized Student List");
+            deserializedStudentList.forEach(System.out::println);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         } finally {
-            oos.close();
             fos.close();
-            ois.close();
+            oos.close();
             fis.close();
+            ois.close();
         }
     }
 }

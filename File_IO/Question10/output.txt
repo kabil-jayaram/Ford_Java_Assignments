@@ -1,0 +1,2 @@
+1: Line 1: Hello
+2: Line 2: Java Character Streams
