@@ -19,10 +19,11 @@ public class Main {
     }
 
     private static String readFileContent(String filePath) throws FileNotFoundException {
+        StringBuilder content = new StringBuilder();
         Scanner scanner = new Scanner(new File(filePath));
-        if(scanner.hasNext())
-            return scanner.nextLine();
-        return null;
+        while(scanner.hasNext())
+            content.append(scanner.nextLine()).append("\n");
+        return content.toString();
     }
 
     private static String encryptContent(String content) {

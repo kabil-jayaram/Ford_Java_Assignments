@@ -24,10 +24,12 @@ public class Main {
     }
 
     private static String readFileContent(String filePath) {
+        StringBuilder content = new StringBuilder();
         try (Scanner scanner = new Scanner(new File(filePath))) {
-            if(scanner.hasNext()) {
-                return scanner.nextLine();
+            while(scanner.hasNext()) {
+                content.append(scanner.nextLine()).append("\n");
             }
+            return content.toString();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
